@@ -1,0 +1,748 @@
+<h3 class="zo2-title-heading">Цены на наши услуги можно рассчитать на калькуляторе</h3>
+<div class="title-sep-container">
+<div class="title-sep"></div>
+</div>
+</div>
+
+<!-- Калькулятор -->
+<style>
+	
+	/* --- Скрываем стандартный --- */
+		input[type=range] {
+		  -webkit-appearance: none; /* Скрывает слайдер, чтобы можно было создать свой */
+		  width: 100%; /* Указание параметра ширины требуется для Firefox. */
+		}
+		 
+		input[type=range]::-webkit-slider-thumb {
+		  -webkit-appearance: none;
+		}
+		 
+		input[type=range]:focus {
+		  outline: none; /* Убирает голубую границу у элемента. Хотя, возможно, и стоит создавать некоторое оформления для состояния фокуса в целях обеспечения доступности. */
+		}
+		 
+		input[type=range]::-ms-track {
+		  width: 100%;
+		  cursor: e-resize !important;
+		  background: transparent; /* Скрывает слайдер, чтобы можно было добавить собственные стили. */
+		  border-color: transparent;
+		  color: transparent;
+		}
+
+	/* --- Оформление ползунка --- */
+		/* Специальные правила для браузеров на движках WebKit/Blink */
+		input[type=range]::-webkit-slider-thumb {
+		  -webkit-appearance: none;
+		 
+		  height: 26px;
+		  width: 12px;
+		  border-radius: 3px;
+		  background: #c5004a;
+		  cursor: e-resize !important;
+		  margin-top: -10px; /* Вам нужно указать значение для поля в Chrome, но в Firefox и IE это происходит автоматически */
+		  z-index: 199 !important;
+		}
+		 
+		/* Тоже самое для Firefox */
+		input[type=range]::-moz-range-thumb {
+		  height: 26px;
+		  width: 12px;
+		  border-radius: 3px;
+		  background: #c5004a;
+		  cursor: e-resize !important;
+		  z-index: 99;
+		}
+		 
+		/* Тоже самое для IE */
+		input[type=range]::-ms-thumb {
+		  height: 26px;
+		  width: 12px;
+		  border-radius: 3px;
+		  background: #c5004a;
+		  cursor: e-resize !important;
+		  z-index: 99;
+		}
+
+	/* --- Оформление полосы диапазона --- */
+		input[type=range]::-webkit-slider-runnable-track {
+		  width: 100%;
+		  height: 6px;
+		  cursor: pointer;
+		  background: #d4d4d4;
+		}
+		 
+		input[type=range]:focus::-webkit-slider-runnable-track {
+		  background: #d4d4d4;
+		}
+		 
+		input[type=range]::-moz-range-track {
+		  width: 100%;
+		  height: 6px;
+		  cursor: pointer;
+		  background: #d4d4d4;
+		}
+		 
+		input[type=range]::-ms-track {
+		  width: 100%;
+		  height: 6px;
+		  cursor: pointer;
+		  background: transparent;
+		  border-color: transparent;
+		  border-width: 16px 0;
+		  color: transparent;
+		}
+		input[type=range]::-ms-fill-lower {
+		  background: #d4d4d4;
+		}
+		input[type=range]:focus::-ms-fill-lower {
+		  background: #d4d4d4;
+		}
+		input[type=range]::-ms-fill-upper {
+		  background: #d4d4d4;
+		}
+		input[type=range]:focus::-ms-fill-upper {
+		  background: #d4d4d4;
+		}
+
+
+		/* --- Оболочка --- */
+	
+
+		.calculator_wrapper {
+			width: 578px;
+			height: max-content;
+			margin: auto;
+			position: relative;
+                        margin-bottom: 25px;
+                        text-align: left !important;
+		}
+
+		.calculator_wrapper .one_input_wrapper {
+			margin: 30px 0 30px 0;
+			position: relative;
+		}
+
+		.calculator_wrapper .one_input_wrapper input {
+			margin: 20px 0 20px 0;
+		}	
+
+		/* ---- ONE field ---- */
+		.calc_scale_range_wrapper {
+			width: 100%;
+			margin-top: -10px;
+		}
+		.calc_scale_range_wrapper div span {
+			font-weight: normal;
+		}
+		.calc_scale_range_wrapper div:first-child span {
+			position: absolute;
+			top: 6px;
+		}
+		.calc_scale_range_wrapper div:not(:first-child) {
+			display: inline-block;
+		    width: calc(100% / 10 - 4px);
+		    height: 32px;
+		    position: relative;
+		    z-index: -99;
+		}
+		.calc_scale_range_wrapper div:not(:first-child) span {
+		    display: inline-block;
+		    position: absolute;
+		    top: 1px;
+		    right: -13px;
+		    background-color: white;
+		    padding-top: 5px;
+		}
+		.calc_scale_range_wrapper div:nth-child(2) span {
+			right: -10px;
+		}
+		.calc_scale_range_wrapper div:first-child {
+			position: absolute;
+		}
+
+		/* ---- TWO field ---- */
+		.calc_scale_range_wrapper_two {
+			
+		}
+		.calc_scale_range_wrapper_two {
+			width: 100%;
+			margin-top: -9px;
+		}
+		.calc_scale_range_wrapper_two div span {
+			font-weight: normal;
+		}
+		.calc_scale_range_wrapper_two div:first-child span {
+			position: absolute;
+			top: 4px;
+		}
+		.calc_scale_range_wrapper_two div:not(:first-child) {
+			display: inline-block;
+		    width: calc(100% / 4 - 4px);
+		    height: 32px;
+		    position: relative;
+		    z-index: -99;
+		}
+		.calc_scale_range_wrapper_two div:not(:first-child) span {
+		    display: inline-block;
+		    position: absolute;
+		    top: -1px;
+		    right: -10px;
+		    background-color: white;
+		    padding-top: 5px;
+		}
+		.calc_scale_range_wrapper_two div:nth-child(2) span {
+			right: -6px;
+		}
+		.calc_scale_range_wrapper_two div:first-child {
+			position: absolute;
+		}
+		/* ---- END TWO field ---- */
+		
+		/* ---- THREE field ---- */
+		.calc_scale_range_wrapper_three {
+			
+		}
+		.calc_scale_range_wrapper_three {
+			width: 100%;
+			margin-top: -10px;
+		}
+		.calc_scale_range_wrapper_three div span {
+			font-weight: normal;
+		}
+		.calc_scale_range_wrapper_three div:first-child span {
+			position: absolute;
+			top: 6px;
+		}
+		.calc_scale_range_wrapper_three div:not(:first-child) {
+			display: inline-block;
+		    width: calc(100% / 9 - 4px);
+		    height: 32px;
+		    position: relative;
+		    z-index: -99;
+		}
+		.calc_scale_range_wrapper_three div:not(:first-child) span {
+		    display: inline-block;
+		    position: absolute;
+		    top: 1px;
+		    right: -5px;
+		    background-color: white;
+		    padding-top: 5px;
+		}
+		.calc_scale_range_wrapper_three div:last-child span {
+			right: -10px;
+		}	
+		.calc_scale_range_wrapper_three div:nth-child(2) span {
+			right: -6px;
+		}
+		.calc_scale_range_wrapper_three div:first-child {
+			position: absolute;
+		}
+		/* ---- END THREE field ---- */
+		
+		.blade_runner_one, .blade_runner_two, .blade_runner_three {
+			position: absolute;
+		    width: 65px;
+		    height: 16px;
+		    left: -91px;
+		    top: 20px;
+		    border: 1px solid #d4d4d4;
+		    padding: 15px;
+		    border-radius: 4px;
+		    display: inline-block;
+		}
+
+		.calculate_output_wrapper {
+			position: relative;
+		}
+		.calculate_output_wrapper div.calc_refresh_wrapper {
+			display: inline-block;
+		    position: absolute;
+		    width: 48px;
+		    height: 48px;
+		    left: -89px;
+		    top: -30px;
+		    border: 1px solid #d4d4d4;
+		    border-radius: 4px;
+		    cursor: pointer;
+		    transition: .1s ease-in-out;
+		    text-align: center;
+		    line-height: 4.8;
+		}
+		.calculate_output_wrapper div.calc_refresh_wrapper:hover {
+			box-shadow: 0px 2px 9px 0px #d4d4d4;
+		}
+		.calculate_output_wrapper div.calc_refresh_wrapper:active {
+			box-shadow: none;
+			border-color: #f1f1f1;
+		}
+
+		.calculate_output_wrapper div.calc_refresh_wrapper img {
+			width: 80%;
+                        margin: 4.5px;
+		}
+
+		.calc_vertical {
+			margin: auto;
+		    display: inline-block;
+		    width: 100%;
+		    font-size: 26px;
+		    font-weight: bold;
+		    color: #d4d4d4;
+		}
+
+		.calc_scale_range_wrapper span,
+		.calc_scale_range_wrapper_two span,
+		.calc_scale_range_wrapper_three span
+		 {
+			z-index: 99;
+		}
+		.calc_scale_range_wrapper span span.calc_vertical,
+		.calc_scale_range_wrapper_two span span.calc_vertical,
+		.calc_scale_range_wrapper_three span span.calc_vertical {
+			z-index: -1;
+			top: -40px;
+			left: 11px;
+		}
+
+		/*  two */
+		.calc_scale_range_wrapper_two span span.calc_vertical {
+			left: 5px;
+		}
+		.calc_scale_range_wrapper_two div:last-child span span.calc_vertical {
+			left: 5px;
+		}
+
+		/*  three */
+		.calc_scale_range_wrapper_three span span.calc_vertical {
+			left: 5px;
+		}
+		
+		.calc_scale_range_wrapper_three div:nth-child(8) span span.calc_vertical,
+		.calc_scale_range_wrapper_three div:nth-child(9) span span.calc_vertical,
+		.calc_scale_range_wrapper_three div:nth-child(10) span span.calc_vertical {
+			left: 0px;
+		}
+		.calc_scale_range_wrapper_three div:last-child span span.calc_vertical {
+			left: 4px;
+		}
+                .calc_scale_range_wrapper span span.calc_vertical.calc_last {
+                        left: 14px;
+                }
+                .calc_check_wrapper p {
+                    margin: 0;
+                }
+                .calculator_output_price {
+                    font-weight: bold;
+                 }
+                  .blade_runner_one, .blade_runner_two, .blade_runner_three {
+                        border-color: #bbbbbb !important;
+                  }
+                  .calculator_wrapper .one_input_wrapper {
+                        margin: 15px 0 15px 0;
+                   }
+
+                  
+                 .calculate_output_wrapper p {
+                        background-color: #efefef;
+                        color: #c5004a;
+                        font-size: 22px;
+                        padding: 5px;
+                        padding-left: 15px;
+                 }
+
+/* ==== КП ==== */
+		.calc_proposal_wrapper h3 {
+			color: #000000;
+                        font-size: 20px;
+                        line-height: 1.5;
+                        font-weight: 400;
+		}
+		
+		.calc_form_name, .calc_form_mail, .calc_form_tel {
+			
+			width: 90%;
+			margin: auto;
+			margin-top: 20px;
+		}
+
+		.calc_proposal_wrapper .calc_form_name p,
+		.calc_proposal_wrapper .calc_form_mail p,
+		.calc_proposal_wrapper .calc_form_tel p {
+			margin: 0 0 5px 0;
+		}
+		.calc_proposal_wrapper .calc_form_name input, 
+		.calc_proposal_wrapper .calc_form_mail input,
+		.calc_proposal_wrapper .calc_form_tel input {
+			padding: 5px;
+			width: 100%;
+		    min-width: 230px;
+		    height: 30px;
+		    border-radius: 2px;
+		    box-shadow: none;
+		    outline: none;
+		    border: 1px solid #d4d4d4;
+		    font-size: 16px;
+		    color: #525252;
+		}
+		.calc_form_wrapper button {
+			height: 35px;
+		    width: 55%;
+		    min-width: 230px;
+		    margin: 35px auto 0 auto;
+		    display: block;
+		    outline: none;
+		    border: 1px solid #c5004a;
+		    background-color: #c5004a;
+		    color: white;
+		    border-radius: 4px;
+		    font-size: 22px;
+		    box-shadow: 0px 3px 4px 0px #a9a1a4;
+		    transition: .1s ease-in-out;
+		}
+		.calc_form_wrapper button:hover {
+			box-shadow: 0px 5px 5px 1px #a9a1a4;
+		}
+		.calc_form_wrapper button:active {
+			box-shadow: 0px 3px 2px 0px #a9a1a4;
+		}
+
+		#calc_field_for_answer, .calc_button_text_span {
+			transition: opacity .3s ease-in-out;
+		}
+		
+
+		/* ==== MEDIA ==== */
+		@media screen and (max-width: 991px) {
+
+            .calc_scale_range_wrapper div span:not(.calc_vertical) {
+                font-size: 12px;
+            }
+
+            .calculator_wrapper {
+                width: 95%;
+                max-width: 578px;
+            }
+
+			.blade_runner_one, .blade_runner_two, .blade_runner_three {
+			    position: absolute;
+			    width: 65px;
+			    height: 3px;
+			    left: auto;
+			   	right: 0;
+			    top: -31px;
+			    border: 1px solid #d4d4d4;
+			    padding: 15px;
+			    border-radius: 4px;
+			    display: inline-block;
+			}
+			.calculate_output_wrapper div.calc_refresh_wrapper {
+				left: 0;
+    			top:0px;
+			}
+
+			.calculate_output_wrapper span {
+				margin-left: 0;
+			}
+                        .calc_check_wrapper {
+                                margin-bottom: 25px;
+                         }
+                        .calculator_output_price {
+                                margin-left: 0px !important;
+                        }
+                          .calculate_output_wrapper p {
+                             width: 75%;
+                             margin-left: auto;
+                             margin-top: 0;
+                        }
+                        .calc_scale_range_wrapper span span.calc_vertical.calc_last {
+                                left: 2px;
+                         }
+                         .calculate_output_wrapper p {
+                               font-size: 15px;
+                         }
+		}
+
+/* --- Зачёркнутая и не зачёркнутая цены --- */
+.price_with_stock {
+    padding-left: 0 !important;
+    text-align: center;
+}
+.stock_left {
+    text-decoration: line-through;
+}
+.stock_left, .stock_right {
+    width: 49%;
+    font-size: 24px;
+}
+
+	</style>
+        <div class="calculator_wrapper">
+        	<iframe name="answered_frame" id="calc_frame_id" style="height: 0;width: 0;opacity: 0;">&nbsp;</iframe>
+        	<form action="validate/calculator_form_check.php" target="answered_frame" method="POST" name="calculator_form_name" id="calculator_form_id">
+			<div class="one_input_wrapper">
+				<label>Количество компьютеров:</label>
+				<input id="blade_runner_one_nuber_input" class="blade_runner_one" value='1' type='number' min="1" max="5000" step="1" form="calculator_form_id" name="input_comp" onclick="ym(52481596, 'reachGoal', 'blade_runner_one_nuber_input'); return true;">
+				<input class="class_blade_runner_one" id="blade_runner_one" type="range" min="1" max="500" step="1" value="0"  form="calculator_form_id" name="range_server" onclick="ym(52481596, 'reachGoal', 'blade_runner_one'); return true;"> 
+				<div class="calc_scale_range_wrapper">
+					<div><span>1</span></div>
+					<div><span>50<span class="calc_vertical">|</span></span></div>
+					<div><span>100<span class="calc_vertical">|</span></span></div>
+					<div><span>150<span class="calc_vertical">|</span></span></div>
+					<div><span>200<span class="calc_vertical">|</span></span></div>
+					<div><span>250<span class="calc_vertical">|</span></span></div>
+					<div><span>300<span class="calc_vertical">|</span></span></div>
+					<div><span>350<span class="calc_vertical">|</span></span></div>
+					<div><span>400<span class="calc_vertical">|</span></span></div>
+					<div><span>450<span class="calc_vertical">|</span></span></div>
+					<div><span>500<span class="calc_vertical calc_last">|</span></span></div>
+				</div>
+			</div>
+		
+			<div class="one_input_wrapper">
+				<label>Количество серверов:</label>
+				<input id="blade_runner_two_nuber_input" class="blade_runner_two" value='0' type='number' min="0" max="20" step="1" form="calculator_form_id" name="input_server" onclick="ym(52481596, 'reachGoal', 'blade_runner_two_nuber_input'); return true;">
+				<input class="class_blade_runner_two" id="blade_runner_two" type="range" min="0" max="20" step="1" value="0" form="calculator_form_id" name="range_server" onclick="ym(52481596, 'reachGoal', 'blade_runner_two'); return true;"> 
+				<div class="calc_scale_range_wrapper_two">
+					<div><span>0</span></div>
+					<div><span>5<span class="calc_vertical">|</span></span></div>
+					<div><span>10<span class="calc_vertical">|</span></span></div>
+					<div><span>15<span class="calc_vertical">|</span></span></div>
+					<div><span>20<span class="calc_vertical calc_last">|</span></span></div>
+				</div>
+			</div>
+
+			<div class="one_input_wrapper">
+				<label>Количество офисов:</label>
+				<input id="blade_runner_three_nuber_input" class="blade_runner_three" value='1' type='number' min="1" max="10" step="1" form="calculator_form_id" name="input_office" onclick="ym(52481596, 'reachGoal', 'blade_runner_three_nuber_input'); return true;">
+				<input class="class_blade_runner_three" id="blade_runner_three" type="range" min="1" max="10" step="1" value="1" form="calculator_form_id" name="range_office" onclick="ym(52481596, 'reachGoal', 'blade_runner_three'); return true;"> 
+				<div class="calc_scale_range_wrapper_three">
+					<div><span>1</span></div>
+					<div><span>2<span class="calc_vertical">|</span></span></div>
+					<div><span>3<span class="calc_vertical">|</span></span></div>
+					<div><span>4<span class="calc_vertical">|</span></span></div>
+					<div><span>5<span class="calc_vertical">|</span></span></div>
+					<div><span>6<span class="calc_vertical">|</span></span></div>
+					<div><span>7<span class="calc_vertical">|</span></span></div>
+					<div><span>8<span class="calc_vertical">|</span></span></div>
+					<div><span>9<span class="calc_vertical">|</span></span></div>
+					<div><span>10<span class="calc_vertical calc_last">|</span></span></div>
+				</div>
+			</div>
+			
+				<div class="calc_check_wrapper">
+					<p>
+						<label>
+						<input type="radio" name="calc_service" value="viezd" checked id="calc_departure" form="calculator_form_id" onclick="ym(52481596, 'reachGoal', 'calc_departure'); return true;">
+						С выездами на объект (количество вызовов НЕ ОГРАНИЧЕНО)</label>
+					</p>
+
+					<p>
+						<label>
+						<input type="radio" name="calc_service" value="udalenno" id="calc_remotely" form="calculator_form_id" onclick="ym(52481596, 'reachGoal', 'calc_remotely'); return true;">
+						Удалённое обслуживание</label>
+					</p>
+				</div>
+
+			<div class="calculate_output_wrapper">
+				<div class="calc_refresh_wrapper">
+					<img src="images/refresh.png">
+				</div>
+                                <p style="margin-bottom: 0;">
+				    <span>Ваша цена в месяц: </span><span id="output_runners" class="calculator_output_price">17</span><span> бел.руб. + НДС <span style="font-weight: bold;">*</span></span>
+				    <input type="hidden" name="hidden_result_of_calc" form="calculator_form_id" id="calc_special_id_result_of_calc">
+                                </p>
+                               <p class="price_with_stock">
+                                   <span style="display: block;">Цена в год при заключении договора по акции: </span>
+                                         <span class="stock_left" style="display:inline-block;"><span id="stock_wrong">205</span><span> бел.руб.</span></span>
+                                         <span class="stock_right" style="display:inline-block;"><span id="stock_write">188</span><span> бел.руб. + НДС <span style="font-weight: bold;">*</span></span></span>
+                               </p>
+<p style="font-size:12px; color:black; margin-top:0;"><span style="font-size:18px;font-weight:bold;">* </span> - уточнённая цена на услуги формируется после бесплатного обследования вашей ИТ-инфраструктуры.
+Минимальная сумма для заключения договора 50 бел.руб. + НДС.</p>
+			</div>
+			<div class="calc_proposal_wrapper">
+				<h3 id="calc_field_for_answer">Вы можете заполнить форму ниже и получить Коммерческое Предложение на свой E-mail в течении минуты.</h3>
+				
+				<div class="calc_form_wrapper">
+					<div class="calc_form_name">
+						<p style="font-weight:bold;">Ваше имя</p>
+						<input id="id_calculator_form_id" type="text" form="calculator_form_id" name="name" required onclick="ym(52481596, 'reachGoal', 'id_calculator_form_id'); return true;">
+					</div>
+					<div class="calc_form_mail">
+						<p style="font-weight:bold;">Ваша почта</p>
+						<input id="id_calculator_form_id_two" type="email" form="calculator_form_id" name="email" required onclick="ym(52481596, 'reachGoal', 'id_calculator_form_id_two'); return true;">
+					</div>
+					<div class="calc_form_tel">
+						<label style="font-weight:bold;">Ваш телефон</label>
+						<input id="id_calculator_form_id_three" type="tel" form="calculator_form_id" name="phone" required onclick="ym(52481596, 'reachGoal', 'id_calculator_form_id_three'); return true;">
+					</div>
+					<button id="calc_send_button" form="calculator_form_id" onclick="ym(52481596, 'reachGoal', 'calc_send_button'); return true;"><span class="calc_button_text_span">Сформировать КП</span></button>
+				</div>
+			</div>
+		</form>
+		</div>
+
+<script>
+		window.addEventListener('load', function() {
+
+			// Бегущие
+			var runner_one = document.getElementById('blade_runner_one');
+			var runner_two = document.getElementById('blade_runner_two');
+			var runner_three = document.getElementById('blade_runner_three');
+
+			// Чеки
+			var departure = document.getElementById('calc_departure');	// Чек С ВЫЕЗДОМ
+			var remotely = document.getElementById('calc_remotely');	// Чек УДАЛЁННО
+
+			// Вывод значения каждого бегущего
+			var output_one = document.getElementsByClassName('blade_runner_one')[0];
+			var output_two = document.getElementsByClassName('blade_runner_two')[0];
+			var output_three = document.getElementsByClassName('blade_runner_three')[0];
+
+			var refresh = document.getElementsByClassName('calc_refresh_wrapper')[0];
+
+			var output = document.getElementById('output_runners');
+                        var stock_wrong_output = document.getElementById('stock_wrong');
+                        var stock_write_output = document.getElementById('stock_write');
+			var hidden_result = document.getElementById('calc_special_id_result_of_calc');
+
+			// Переменные для расчётов
+			var total_result, result, percent, plus_office, comp_result, serv_result, comp_discount, serv_discount, comp_complexity, serv_complexity, innerFrameCont, frameTextCont, calc_field_for_answer, button_for_answer = document.getElementById('calc_send_button');
+
+			/* ==== CONSTANTS ==== */
+			var DISCOUNT_COMP = 0.1;
+			var DISCOUNT_SERV = 0.3;
+			var ALLOWANCE_OFFICE = 30;
+			var DISCOUNT_REMOTELY = 20;
+
+			// При каждом изменении расчитываем заново
+			runner_one.addEventListener('input', calculate);
+			runner_two.addEventListener('input', calculate);
+			runner_three.addEventListener('input', calculate);		
+			remotely.addEventListener('input', calculate);
+			departure.addEventListener('input', calculate);
+
+			/* === [ Расчёт ] === */
+			function calculate(e) {
+
+				if(e.target.type != 'radio' && e.target.type) {
+					var our_class = e.target.className;
+					var our_id = e.target.id;
+					
+					if( e.target.type == 'range' ) {
+						document.getElementsByClassName(our_id)[0].value = e.target.value;
+					} else if( e.target.type == 'number' ) {
+						document.getElementById(our_class).value = e.target.value;
+					}
+				} 
+				
+				var comp = runner_one.value;
+				var serv = runner_two.value;
+				var office = runner_three.value;
+
+						/* Расчёт с применением интегралов, рядов Фурье и сложных тригонометрических выражений */
+						comp_result = comp * 17;														// Стоимость за обслуживание только компов
+						serv_result = serv * 32;														// Стоимость за обслуживание только серваков
+
+							// Расчитаем скидку для компов
+									// Сложность для компов
+									comp_complexity = (11.5 / (501 - comp)) * comp;
+
+							comp_discount = (comp_result / 100) * ((comp - 1) * DISCOUNT_COMP);					// Скидка для компов, %
+							comp_result =  (comp_result + comp_complexity) - comp_discount; 			// Цена по компам с вычетом скидки
+										
+
+							// Расчитаем скидку для серверов
+									// Сложность для серверов
+									serv_complexity = (11.5 / (21 - serv)) * serv;
+
+							serv_discount = (serv_result / 100) * (serv > 1 ? ((serv - 1) * DISCOUNT_SERV) : 0);	// Скидка для серверов, %
+							serv_result = (serv_result + serv_complexity) - serv_discount;				// Цена по серверам с вычетом скидки
+
+						result = comp_result + serv_result;												// Результат без процентов
+
+						plus_office = office > 1 ? (office - 1) * ALLOWANCE_OFFICE : 0;								// Надбавка за количество офисов
+
+						without_office =  comp_result + serv_result;									// Цена без количества офисов
+						total_result = without_office + (result / 100) * plus_office;					// Прибавляем надбавку за офисы
+
+						if(remotely.checked) {
+							total_result = total_result - (total_result / 100) * DISCOUNT_REMOTELY;					// Если удалённо, то отнимем проценты
+						} 
+						/* ====================================== [ END ] =====================================*/
+		                var int_var  = Math.ceil( ( total_result ) * 100 ) / 100;
+				output.textContent = Math.ceil( ( total_result ) * 100 ) / 100 ;
+				hidden_result.value = output.textContent;
+                                stock_wrong_output.textContent = Math.ceil( int_var  * 12 );
+                                stock_write_output.textContent = Math.ceil( int_var  * 12  - int_var );
+			}
+			/* = [ end Расчёт ] = */
+
+			/* === [ Передача даных из инпута в бегущих ] ===*/
+			output_one.addEventListener('change', translateData);
+			output_two.addEventListener('change', translateData);
+			output_three.addEventListener('change', translateData);
+
+
+			function translateData(e) {
+				runner_one.value = output_one.value;
+				runner_two.value = output_two.value;
+				runner_three.value = output_three.value;
+
+				calculate(e);
+			}
+
+			/* === [ Сброс ] === */
+			refresh.addEventListener('click', function(e) {
+				runner_one.value = 1;
+				runner_two.value = 0;
+				runner_three.value = 1;
+
+				output_one.value = 1;
+				output_two.value = 0;
+				output_three.value = 1;
+				
+				remotely.checked = false;
+				departure.checked = true;
+
+				calculate(e);
+			})
+
+			/* === [ Ответ ] === */
+
+			var our_form = document.getElementById('calculator_form_id');
+
+			function frameLoaded() {
+				button_for_answer.setAttribute('disabled', true);
+
+				var i_frame = document.getElementById('calc_frame_id');
+				i_frame.addEventListener('load', function() {
+					innerFrameCont = i_frame.contentDocument || i_frame.contentWindow.document;
+					frameTextCont = innerFrameCont.body.querySelector('h4').textContent;
+
+					calc_field_for_answer = document.getElementById('calc_field_for_answer');
+
+					var span_answer = document.getElementsByClassName('calc_button_text_span')[0];
+
+     				// h3 меняем содержимое
+     				calc_field_for_answer.style.opacity = 0;
+     				span_answer.style.opacity = 0;
+     				var opacity_h3 = setTimeout(function() {
+     					calc_field_for_answer.textContent = frameTextCont;
+     					button_for_answer.textContent = 'КП сформировано';
+
+     					calc_field_for_answer.style.opacity = 1;
+     					calc_field_for_answer.style.color = 'green';
+
+     					span_answer.style.opacity = 1;
+
+     					clearTimeout(calc_field_for_answer);
+     				}, 400);
+					
+				});
+			}
+
+			our_form.addEventListener('submit', frameLoaded);
+					
+		});
+	</script>
+<!-- Калькулятор -->
